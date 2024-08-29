@@ -1,10 +1,10 @@
 import React from 'react'
 import NotFound from "../Assests/404.svg";
-import ReciprCard from '../components/ReciprCard';
+import ReciprCard from "../components/ReciprCard";
+import { getRandomColor } from '../library/CardColorLibr';
 
 const Favorites = () => {
-  const fav = true;
-  // const fav = false;
+  const fav = JSON.parse(localStorage.getItem("favorites")) || [];
 
   return (
     <>
@@ -18,16 +18,11 @@ const Favorites = () => {
             </div>
           )}
 
-          {fav && (
-            <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <ReciprCard/>
-            <ReciprCard/>
-            <ReciprCard/>
-            <ReciprCard/>
-            <ReciprCard/>
-            <ReciprCard/>
+          <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {fav.map((recipe) => (
+              <ReciprCard key={recipe.label} recipe={recipe}{...getRandomColor} />
+            ))}
           </div>
-          )}
         </div>
       </div>
     </>
