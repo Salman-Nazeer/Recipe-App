@@ -1,9 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Heart, Home } from "lucide-react";
 import Logo from "../Assests/logo.svg";
 import MobileLogo from "../Assests/mobile-logo.svg";
 
 const NavBar = () => {
+  return (
+    <>
+      <DesktopSidebar />
+      <MobileSidebar />
+    </>
+  );
+};
+
+export default NavBar;
+
+const DesktopSidebar = () => {
   return (
     <>
       <div className="p-3 md:p-10 border-r min-h-screen w-24 md:w-64 hidden sm:block">
@@ -14,11 +26,11 @@ const NavBar = () => {
           </div>
           <ul className="flex flex-col items-center md:items-start gap-8">
             <Link to={"/"} className="flex gap-1">
-              {/* <Home size={"24"} /> */}
+              <Home size={"24"} />
               <span className="font-bold hidden md:block">Home</span>
             </Link>
             <Link to={"/favorites"} className="flex gap-1">
-              {/* <Heart size={"24"} /> */}
+              <Heart size={"24"} />
               <span className="font-bold hidden md:block">Favorites</span>
             </Link>
           </ul>
@@ -28,4 +40,18 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const MobileSidebar = () => {
+  return (
+    <div
+      className="flex justify-center gap-10 border-t fixed w-full
+			bottom-0 left-0 bg-white z-10 p-2 sm:hidden"
+    >
+      <Link to={"/"}>
+        <Home size={"24"} className="cursor-pointer" />
+      </Link>
+      <Link to={"/favorites"}>
+        <Heart size={"24"} className="cursor-pointer" />
+      </Link>
+    </div>
+  );
+};
